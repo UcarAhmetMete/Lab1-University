@@ -1,17 +1,19 @@
 # OOP Lab 1 - University
 
+(the Italian version is available in file [README_it.md](README_it.md)).
+
 Design and implement a program to manage university courses, teachers, and students.
 All the classes must belong to the package `university`.
 
 ## R1. University
 
-The user interface (not part of this assignment) interacts through the class University, whose constructor accepts as argument the name of the university.
+The user interface (not part of this assignment) interacts through the class `University`, whose constructor accepts as argument the name of the university.
 
 The name of the university can be retrieved through method `getName()`.
 
 It is possible to assign the name of the Rector by means of the method `setRector()` that accepts as arguments the first and last name of the Rector.
 
-The method `getRector()` returns the first and last name of the Rector concatenated and separated by a blank space (`" "`).
+The method `getRector()` returns a string the first and last name of the Rector concatenated and separated by a blank space (`" "`).
 
 ## R2. Students
 
@@ -53,7 +55,8 @@ To get the average grade for a student, the method `studentAvg()` is used. It ac
 
 It is possible to get the average grades of all students that took the exam for a given course, method `courseAvg()` accepting as argument the course code can be used for this purpose. The format is the following: "`The average for the course COURSE_TITLE is: COURSE_AVG"`, if at least one student took the exam for that course. If this is not the case, the method should return `"No student has taken the exam in COURSE_TITLE"`.
 
-:point_right: It can be safely assumed that if a student takes an exam, it has been previously enrolled to the corresponding course. 
+- :point_right: It can be safely assumed that if a student takes an exam, it has been previously enrolled to the corresponding course. 
+
 
 ## R6. Student award
 
@@ -80,3 +83,6 @@ Notes:
 - :point_right: use the `info()` method of object logger to generate the logging messages;
 - :point_right:  please note that by default the messages will be printed to the console. 
 
+---
+
+Version 1.0 - 2023-03-13
