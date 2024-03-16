@@ -23,7 +23,9 @@ Gli ID numerici sono assegnati progressivamente in ciascuna università a partir
 
 Per ottenere le informazioni relative ad uno studente è possibile usare il metodo `student()` che accetta come parametri l'ID e restituisce una stringa composta da ID, nome e cognome separati da spazi, es. `"10000 Donald Duck"`.
 
-- :point_right: Possiamo assumere che ogni università abbia al più 100 studenti iscritti.
+Suggerimenti:
+
+- &#9758; Possiamo assumere che ogni università abbia al più 100 studenti iscritti.
 
 ## R3. Corsi
 
@@ -32,7 +34,9 @@ I codici dei corsi sono assegnati in modo progressivo a partire dal numero 10.
 
 Per ottenere le informazioni su un corso possiamo utilizzare il metodo `course()` che accetta il codice del corso e restituisce una stringa contenente il codice, il titolo e il nome del docente separati da virgola, ad esempio `"10,Programmazione ad Oggetti,James Gosling"`.
 
-- :point_right: Possiamo assumere in che ogni università offra non più di 50 corsi.
+Suggerimenti:
+
+- &#9758; Possiamo assumere in che ogni università offra non più di 50 corsi.
 
 ## R4. Partecipazione ai corsi
 
@@ -43,12 +47,14 @@ Gli studenti appaiono uno per riga (le righe sono terminate da un carattere di a
 
 Dato l'ID di uno studente, è possibile ottenere l'elenco dei corsi ai quali partecipa tramite il metodo `studyPlan()`. I corsi sono descritti uno per riga e formattati come descritto nel requisito R3.
 
-- :point_right: Possiamo assumere che nessun corso abbia più di 100 partecipanti e che ogni studente possa partecipare a non più di 25 corsi distinti.
+Suggerimenti:
+
+- &#9758; Possiamo assumere che nessun corso abbia più di 100 partecipanti e che ogni studente possa partecipare a non più di 25 corsi distinti.
 
 
 --- 
 
-Requisiti aggiuntivi (pensati per la pratica autonoma a casa)
+**Requisiti aggiuntivi** (pensati per la pratica autonoma a casa)
 
 
 ## R5. Esami
@@ -59,7 +65,9 @@ Per ottenere la media dei voti di uno studente, viene utilizzato il metodo `stud
 
 È possibile ottenere la media dei voti di tutti gli studenti che hanno sostenuto l'esame per un determinato corso, utilizzando il metodo courseAvg(), che accetta come argomento il codice del corso. Il formato restituito è il seguente: `"The average for the course COURSE_TITLE is: COURSE_AVG"`, se almeno uno studente ha sostenuto l'esame per quel corso. Se questo non è il caso, il metodo restituisce `"No student has taken the exam in COURSE_TITLE"`.
 
-- :point_right: Si può assumere che se uno studente sostiene un esame, è stato precedentemente iscritto al corso corrispondente.
+Suggerimenti:
+
+- &#9758; Si può assumere che se uno studente sostiene un esame, è stato precedentemente iscritto al corso corrispondente.
 
 
 ## R6. Premio studentesco
@@ -70,7 +78,9 @@ Il punteggio degli studenti è valutato come la media dei voti degli esami che h
 
 Il metodo restituisce una stringa con le informazioni sui tre studenti con il punteggio più alto. Gli studenti appaiono uno per riga (le righe sono terminate da un carattere di a-capo `'\n'`) e ognuno di essi è formattato come: "NOME_STUDENTE COGNOME_STUDENTE : PUNTEGGIO".
 
-- :point_right: Si assume che non ci siano parità di punteggio.
+Suggerimenti:
+
+- &#9758; Si assume che non ci siano parità di punteggio.
 
 
 ## R7. Logger
@@ -82,12 +92,12 @@ Aggiungere il logging delle operazioni eseguite attraverso la classe facade `Uni
 - l'iscrizione di uno studente a un corso, con un messaggio di log come `"Student 10004 signed up for course 11"`
 - uno studente che svolge un esame, con un messaggio di log come `"Student 10001 took an exam in course 12 with grade 27"`
 
-Note:
+Suggerimenti:
 
-- :point_right: per eseguire il logging è disponibile un oggetto `logger` della classe `java.util.logging.Logger` all'interno della classe `University`;
-- :point_right: utilizzare il metodo `info()` dell'oggetto `logger` per generare i messaggi di log
-- :point_right: si noti che di default i messaggi verranno stampati sulla console.
+- &#9758; per eseguire il logging è disponibile un oggetto `logger` della classe `java.util.logging.Logger` all'interno della classe [`University`](src/university/University.java);
+- &#9758; utilizzare il metodo `info()` dell'oggetto `logger` per generare i messaggi di log
+- &#9758; si noti che normalmente i messaggi verranno stampati sulla console.
 
 ---
 
-Versione 1.0 - 2023-03-13
+Versione 1.1 - 2024-03-16
