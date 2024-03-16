@@ -41,7 +41,7 @@ public class University {
 	}
 	
 	/**
-	 * Retrieves the rector of the university
+	 * Retrieves the rector of the university with the format "First Last"
 	 * 
 	 * @return name of the rector
 	 */
@@ -53,6 +53,8 @@ public class University {
 // R2
 	/**
 	 * Enrol a student in the university
+	 * The university assigns ID numbers 
+	 * progressively from number 10000.
 	 * 
 	 * @param first first name of the student
 	 * @param last last name of the student
@@ -65,7 +67,8 @@ public class University {
 	}
 	
 	/**
-	 * Retrieves the information for a given student
+	 * Retrieves the information for a given student.
+	 * The university assigns IDs progressively starting from 10000
 	 * 
 	 * @param id the ID of the student
 	 * 
@@ -79,6 +82,7 @@ public class University {
 // R3
 	/**
 	 * Activates a new course with the given teacher
+	 * Course codes are assigned progressively starting from 10.
 	 * 
 	 * @param title title of the course
 	 * @param teacher name of the teacher
@@ -117,7 +121,10 @@ public class University {
 	}
 	
 	/**
-	 * Retrieve a list of attendees
+	 * Retrieve a list of attendees.
+	 * 
+	 * The students appear one per row (rows end with `'\n'`) 
+	 * and each row is formatted as describe in in method {@link #student}
 	 * 
 	 * @param courseCode unique id of the course
 	 * @return list of attendees separated by "\n"
@@ -212,6 +219,6 @@ public class University {
      * This field points to the logger for the class that can be used
      * throughout the methods to log the activities.
      */
-    private final static Logger logger = Logger.getLogger("University");
+    public static final Logger logger = Logger.getLogger("University");
 
 }
