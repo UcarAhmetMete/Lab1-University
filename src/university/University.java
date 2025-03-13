@@ -1,4 +1,5 @@
 package university;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 /**
@@ -17,7 +18,9 @@ public class University {
 	private String name;
 	private String RectorName;
 	private String RectorSurname;
-	private int nextStudentId = 10000;
+	private int NextStudentId = 10000;
+	private HashMap<Integer, String> students = new HashMap<>();
+
 
 	public University(String name){
 		// Example of logging
@@ -73,7 +76,10 @@ public class University {
 	
 	public int enroll(String first, String last){
 		//TODO: to be implemented
-		return -1;
+		int StudentID = NextStudentId++; // It increments the number for every other students.
+		students.put(StudentID,first + " " + last); // This a method of HashMap basicly firs parameter is key and other is the value
+		return StudentID; // returns student number
+
 	}
 	
 	/**
@@ -85,8 +91,12 @@ public class University {
 	 * @return information about the student
 	 */
 	public String student(int id){
-		//TODO: to be implemented
-		return null;
+		if(students.containsKey(id)){
+			return id + " " + students.get(id);
+		}
+		else{
+			return "Student not Found!!";
+		}
 	}
 	
 // R3
