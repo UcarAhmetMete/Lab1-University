@@ -14,10 +14,17 @@ public class University {
 	 * Constructor
 	 * @param name name of the university
 	 */
+	private String name;
+	private String RectorName;
+	private String RectorSurname;
+	private int nextStudentId = 10000;
+
 	public University(String name){
 		// Example of logging
 		// logger.info("Creating extended university object");
 		//TODO: to be implemented
+		this.name = name; 
+		logger.info("University"+ name + "created");
 	}
 	
 	/**
@@ -27,7 +34,7 @@ public class University {
 	 */
 	public String getName(){
 		//TODO: to be implemented
-		return null;
+		return name;
 	}
 	
 	/**
@@ -38,6 +45,8 @@ public class University {
 	 */
 	public void setRector(String first, String last){
 		//TODO: to be implemented
+		this.RectorName = first;
+		this.RectorSurname= last;
 	}
 	
 	/**
@@ -47,7 +56,7 @@ public class University {
 	 */
 	public String getRector(){
 		//TODO: to be implemented
-		return null;
+		return RectorName + " " + RectorSurname;
 	}
 	
 // R2
@@ -61,6 +70,7 @@ public class University {
 	 * 
 	 * @return unique ID of the newly enrolled student
 	 */
+	
 	public int enroll(String first, String last){
 		//TODO: to be implemented
 		return -1;
