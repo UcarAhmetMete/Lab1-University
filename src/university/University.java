@@ -20,7 +20,8 @@ public class University {
 	private String RectorSurname;
 	private int NextStudentId = 10000;
 	private HashMap<Integer, String> students = new HashMap<>();
-
+	private HashMap<Integer, String> courses = new HashMap<>();
+	private int NextCourseCode = 10;
 
 	public University(String name){
 		// Example of logging
@@ -111,7 +112,9 @@ public class University {
 	 */
 	public int activate(String title, String teacher){
 		//TODO: to be implemented
-		return -1;
+		int CourseCode = NextCourseCode++; // Assigned and Incremented.
+		courses.put(CourseCode, title + " , " + teacher); // I used hash map key-value relation again. So, CourseID will be maps to title and teacher.Complexity is O(1) for HASHMAP
+		return CourseCode;
 	}
 	
 	/**
@@ -125,9 +128,14 @@ public class University {
 	 * 
 	 * @return information about the course
 	 */
-	public String course(int code){
-		//TODO: to be implemented
-		return null;
+	public String course(int code) {
+		if (courses.containsKey(code)) { //.cointainsKey() is a function to check if the key is exists or not
+			return code + "," + courses.get(code); // if the key is exists it returns code and get the title and teacher name
+		}
+		else{
+			return "Course not found!"; // otherwise returns not found here
+		}
+		
 	}
 	
 // R4
