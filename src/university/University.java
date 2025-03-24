@@ -1,5 +1,7 @@
 package university;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -21,6 +23,9 @@ public class University {
 	private int NextStudentId = 10000;
 	private HashMap<Integer, String> students = new HashMap<>();
 	private HashMap<Integer, String> courses = new HashMap<>();
+	private HashMap<Integer, List<Integer>> registered = new HashMap<>(); // Students -> Course
+	private HashMap<Integer, List<Integer>> courseRegistrations = new HashMap<>(); // Course -> Students
+
 	private int NextCourseCode = 10;
 
 	public University(String name){
@@ -146,6 +151,11 @@ public class University {
 	 */
 	public void register(int studentID, int courseCode){
 		//TODO: to be implemented
+		registered.putIfAbsent(studentID, new ArrayList<>()); // putifAbsent inserts only if the key is not already present. Does not overwrite existing values.
+		registered.get(studentID).add(courseCode); // Add course to student's list
+		courseRegistrations.putIfAbsent(courseCode, new ArrayList<>()); // Add student to Course's list
+		courseRegistrations.get(courseCode).add(studentID);
+
 	}
 	
 	/**
@@ -158,9 +168,17 @@ public class University {
 	 * @return list of attendees separated by "\n"
 	 */
 	public String listAttendees(int courseCode){
-		//TODO: to be implemented
-		return null;
+		if (!courseRegistrations.containsKey(courseCode) || courseRegistrations.get(courseCode).isEmpty()) {
+			return ""; // No attendees
+		}
+	
+		String result = "";
+		for (int studentID : courseRegistrations.get(courseCode)) {
+			result += student(studentID) + "\n";
+		}
+		return result;
 	}
+	
 
 	/**
 	 * Retrieves the study plan for a student.
@@ -175,9 +193,31 @@ public class University {
 	 */
 	public String studyPlan(int studentID){
 		//TODO: to be implemented
-		return null;
-	}
+		String result = " ";
 
+		for (int CourseCode: registered.keySet()){ // The keySet() method returns a set containing all of the keys in the map.
+			if(registered.get(CourseCode).contains(studentID)){
+				result += course(CourseCode) + "\n";	
+			}
+			else{
+				result += "Student is not registered for this course \n";
+			}
+		} 
+
+		return result;
+	}
+	public String studyPlan(int studentID){
+		if (!registered.containsKey(studentID) || registered.get(studentID).isEmpty()) { // First is true if the student is not found in the map at all. -> Second is true if the student is found in the map, but the yhave no courses in their list
+			return " "; // No registered courses
+		}
+	
+		String result = " ";
+		for (int courseCode : registered.get(studentID)) {
+			result += course(courseCode) + "\n";  // Fetch course details
+		}
+		return result;
+	}
+	
 // R5
 	/**
 	 * records the grade (integer 0-30) for an exam can 
@@ -203,6 +243,7 @@ public class University {
 	 * @return the average grade formatted as a string.
 	 */
 	public String studentAvg(int studentId) {
+		
 		return null;
 	}
 	
