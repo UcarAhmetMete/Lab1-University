@@ -191,32 +191,19 @@ public class University {
 	 * 
 	 * @return the list of courses the student is registered for
 	 */
-	public String studyPlan(int studentID){
-		//TODO: to be implemented
-		String result = " ";
-
-		for (int CourseCode: registered.keySet()){ // The keySet() method returns a set containing all of the keys in the map.
-			if(registered.get(CourseCode).contains(studentID)){
-				result += course(CourseCode) + "\n";	
-			}
-			else{
-				result += "Student is not registered for this course \n";
-			}
-		} 
-
-		return result;
-	}
-	public String studyPlan(int studentID){
-		if (!registered.containsKey(studentID) || registered.get(studentID).isEmpty()) { // First is true if the student is not found in the map at all. -> Second is true if the student is found in the map, but the yhave no courses in their list
-			return " "; // No registered courses
+	public String studyPlan(int studentID) {
+		if (!registered.containsKey(studentID) || registered.get(studentID).isEmpty()) {
+			return ""; // No registered courses
 		}
 	
-		String result = " ";
+		String result = "";
 		for (int courseCode : registered.get(studentID)) {
 			result += course(courseCode) + "\n";  // Fetch course details
 		}
 		return result;
 	}
+	
+	
 	
 // R5
 	/**
