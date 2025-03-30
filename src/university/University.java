@@ -25,6 +25,7 @@ public class University {
 	private HashMap<Integer, String> courses = new HashMap<>();
 	private HashMap<Integer, List<Integer>> registered = new HashMap<>(); // Students -> Course
 	private HashMap<Integer, List<Integer>> courseRegistrations = new HashMap<>(); // Course -> Students
+	private HashMap<Integer, HashMap<Integer, Integer>> grades = new HashMap<>(); // For the exam() methods helps to find
 
 	private int NextCourseCode = 10;
 
@@ -211,12 +212,13 @@ public class University {
 	 * 
 	 * @param studentId the ID of the student
 	 * @param courseID	course code 
-	 * @param grade		grade ( 0-30)
+	 * @param grade		grade ( 0-30) 
 	 */
 	public void exam(int studentId, int courseID, int grade) {
-		
+		grades.putIfAbsent(studentId, new HashMap<>());
+		grades.get(studentId).put(courseID, grade);
 	}
-
+	
 	/**
 	 * Computes the average grade for a student and formats it as a string
 	 * using the following format 
@@ -230,8 +232,17 @@ public class University {
 	 * @return the average grade formatted as a string.
 	 */
 	public String studentAvg(int studentId) {
+		if(!grades.containsKey(studentId)){
+			return "Student" + studentId + "hasn't taken any exams";
+		}
+		HashMap<Integer, Integer> StudentGrades = grades.get(studentId);
+		int sum = 0;
+		for (int grade : StudentGrades.values()){
+			sum += grade;
+		} 
+		double avg =(double) sum / StudentGrades.size();
 		
-		return null;
+		return "Student " + studentId + " : " + avg;
 	}
 	
 	/**
@@ -246,7 +257,19 @@ public class University {
 	 * @return the course average formatted as a string
 	 */
 	public String courseAvg(int courseId) {
-		return null;
+		int totalGrades = 0;
+		int count = 0;
+		for (HashMap<Integer, Integer> studentGrades :grades.values()){
+			if(studentGrades.containsKey(courseId)){ 
+				totalGrades += studentGrades.get(courseId);
+				count++;
+			}
+		}
+		if (count ==  0){
+			return "No student has taken the exam in" + course(courseId);
+		}
+		double avg = (double) totalGrades/count;
+		return "The average for the course " + course(courseId) + "is:" +avg;
 	}
 	
 
