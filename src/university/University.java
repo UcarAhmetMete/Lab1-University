@@ -31,11 +31,7 @@ public class University {
 	private int NextCourseCode = 10;
 
 	public University(String name){
-		// Example of logging
-		// logger.info("Creating extended university object");
-		//TODO: to be implemented
 		this.name = name; 
-		logger.info("University"+ name + "created");
 	}
 	
 	/**
@@ -86,6 +82,7 @@ public class University {
 		//TODO: to be implemented
 		int StudentID = NextStudentId++; // It increments the number for every other students.
 		students.put(StudentID,first + " " + last); // This a method of HashMap basicly firs parameter is key and other is the value
+		logger.info("Enrolled student: " + first + " " + last + " with ID: " + StudentID);
 		return StudentID; // returns student number
 
 	}
@@ -121,6 +118,7 @@ public class University {
 		//TODO: to be implemented
 		int CourseCode = NextCourseCode++; // Assigned and Incremented.
 		courses.put(CourseCode, title + " , " + teacher); // I used hash map key-value relation again. So, CourseID will be maps to title and teacher.Complexity is O(1) for HASHMAP
+		logger.info("Activated course: "+ CourseCode + " - " + title + "\nTeacher : " + teacher);
 		return CourseCode;
 	}
 	
@@ -155,9 +153,13 @@ public class University {
 		//TODO: to be implemented
 		registered.putIfAbsent(studentID, new ArrayList<>()); // putifAbsent inserts only if the key is not already present. Does not overwrite existing values.
 		registered.get(studentID).add(courseCode); // Add course to student's list
+
+
 		courseRegistrations.putIfAbsent(courseCode, new ArrayList<>()); // Add student to Course's list
 		courseRegistrations.get(courseCode).add(studentID);
 
+
+		logger.info("Student " + studentID + "registered for course" + courseCode);
 	}
 	
 	/**
@@ -218,6 +220,8 @@ public class University {
 	public void exam(int studentId, int courseID, int grade) {
 		grades.putIfAbsent(studentId, new HashMap<>());
 		grades.get(studentId).put(courseID, grade);
+
+		logger.info("Student "+ studentId + "took an exam in course" + courseID + " with grade:"+ grade);
 	}
 	
 	/**
