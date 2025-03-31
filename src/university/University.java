@@ -2,6 +2,7 @@ package university;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -287,10 +288,46 @@ public class University {
 	 * The students appear one per row (rows are terminated by a new-line character {@code '\n'}) 
 	 * and each one of them is formatted as: {@code "STUDENT_FIRSTNAME STUDENT_LASTNAME : SCORE"}.
 	 * 
-	 * @return info on the best three students.
+	 * @return info on the best three students. 
 	 */
 	public String topThreeStudents() {
-		return null;
+		HashMap<Integer, Double> studentScores = new HashMap<>();
+		for (int studentId : grades.keySet()){ // Iterates over students who took the exams before
+			HashMap<Integer, Integer> studentGrades = grades.get(studentId); //
+			int sum  = 0;
+			for(int grade : studentGrades.values()){
+				sum+= grade; // Sum All grades
+			}
+			double avgGrade = (double) sum / studentGrades.size(); // compute the average
+
+		int examsTaken = studentGrades.size();
+		int courseRegistered = registered.get(studentId).size();
+
+		double bonus =  (double) examsTaken / courseRegistered *10;
+		double finalScore = avgGrade + bonus;
+
+		studentScores.put(studentId, finalScore);
+		}
+		// The way to srt students by score (descending)
+
+		List<Map.Entry<Integer, Double>> sortedEntries = new ArrayList<>(studentScores.entrySet());
+		sortedEntries.sort((a,b) -> b.getValue().compareTo(a.getValue()));
+
+		StringBuilder result = new StringBuilder();
+
+		int count = 0;
+		for (Map.Entry<Integer, Double> entry : sortedEntries){
+			if(count >= 3) break;
+			int studentId = entry.getKey();
+			String fullName = students.get(studentId);
+			String [] nameParts = fullName.split(" ");
+
+			result.append(String.format("%s : %.1f\n", nameParts[1], entry.getValue()));
+			count++;
+		}
+
+	return result.toString().trim();
+
 	}
 
 // R7
