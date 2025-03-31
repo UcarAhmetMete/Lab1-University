@@ -320,9 +320,9 @@ public class University {
 			if(count >= 3) break;
 			int studentId = entry.getKey();
 			String fullName = students.get(studentId);
-			String [] nameParts = fullName.split(" ");
+		
 
-			result.append(String.format("%s : %.1f\n", nameParts[1], entry.getValue()));
+			result.append(String.format("%s : %.1f\n", fullName, entry.getValue()));
 			count++;
 		}
 
